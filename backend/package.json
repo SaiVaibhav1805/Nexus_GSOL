@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "seed": "node seed.js"
+  }
+}
