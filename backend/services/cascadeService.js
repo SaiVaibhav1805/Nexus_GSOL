@@ -2,7 +2,7 @@ import Shipment from '../models/Shipment.js';
 import Hub from '../models/Hub.js';
 import Signal from '../models/Signal.js';
 import { analyzeDisruption } from './geminiService.js';
-import { createFlashAuction } from './AuctionService.js';
+import { createFlashAuction } from './auctionService.js';
 
 export async function runCascade(signal, io) {
     const affectedHubId = signal.affectedHubId._id
