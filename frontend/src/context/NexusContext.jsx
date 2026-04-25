@@ -14,17 +14,18 @@ export function NexusProvider({ children }) {
     const [lastCascade, setLastCascade] = useState(null);
     const [connected, setConnected] = useState(false);
     const socketRef = useRef(null);
+    const API = import.meta.env.VITE_API_URL;
 
     // Load initial data
     useEffect(() => {
-        axios.get('/api/hubs').then(r => setHubs(r.data));
-        axios.get('/api/shipments').then(r => setShipments(r.data));
-        axios.get('/api/signals').then(r => setSignals(r.data));
+        axios.get(`${API}/api/hubs`).then(r => setHubs(r.data));
+        axios.get(`${API}/api/shipments`).then(r => setShipments(r.data));
+        axios.get(`${API}/api/signals`).then(r => setSignals(r.data));
     }, []);
 
     // Socket.io connection
     useEffect(() => {
-        socketRef.current = io('http://localhost:5000');
+        socketRef.current = io(API);
 
         socketRef.current.on('connect', () => {
             setConnected(true);

@@ -40,7 +40,7 @@ function AuctionCard({ auction, onBid }) {
         setBidding(true);
         setError('');
         try {
-            await axios.post(`/api/auctions/${auction._id}/bid`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/auctions/${auction._id}/bid`, {
                 ...bidForm,
                 amount: Number(bidForm.amount)
             });

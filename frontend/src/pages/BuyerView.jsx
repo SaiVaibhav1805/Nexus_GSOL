@@ -116,7 +116,7 @@ function AuctionCard({ auction, onBidPlaced }) {
         setLoading(true);
         setError('');
         try {
-            await axios.post(`/api/auctions/${auction._id}/bid`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/auctions/${auction._id}/bid`, {
                 ...form, amount
             });
             setSuccess(`Bid of $${amount.toLocaleString()} placed successfully!`);
@@ -409,7 +409,7 @@ export default function BuyerView() {
 
     const loadAuctions = async () => {
         try {
-            const res = await axios.get('/api/auctions');
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/auctions`);
             setAuctions(res.data);
         } catch (err) {
             console.error(err);
@@ -420,7 +420,7 @@ export default function BuyerView() {
     useEffect(() => {
         loadAuctions();
 
-        const socket = io('http://localhost:5000');
+        const socket = io(import.meta.env.VITE_API_URL);
 
         socket.on('auction:new', (data) => {
             setNewAlert(data.message);
