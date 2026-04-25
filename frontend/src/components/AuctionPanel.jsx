@@ -215,7 +215,7 @@ export default function AuctionPanel({ onClose }) {
 
     const loadAuctions = async () => {
         try {
-            const res = await axios.get('/api/auctions');
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/auctions`);
             setAuctions(res.data);
         } catch (err) {
             console.error(err);
